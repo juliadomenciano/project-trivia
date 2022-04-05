@@ -5,12 +5,16 @@ import Login from './pages/Login';
 import Play from './pages/Play';
 import Settings from './pages/Settings';
 
-export default function App() {
-  return (
-    <Switch>
-      <Route exact path="/" component={ Login } />
-      <Route exact path="/play" component={ Play } />
-      <Route path="/settings" component={ Settings } />
-    </Switch>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        <Route exact path="/play" component={ Play } />
+        <Route path="/settings" component={ Settings } />
+      </Switch>
+    );
+  }
 }
+
+export default App;

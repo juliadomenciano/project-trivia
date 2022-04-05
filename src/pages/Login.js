@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getToken } from '../redux/actions';
 import Button from '../components/Button';
 
 class Login extends React.Component {
@@ -9,6 +12,7 @@ class Login extends React.Component {
       name: '',
       email: '',
       isDisabled: true,
+      redirect: false,
     };
   }
 
@@ -33,8 +37,16 @@ class Login extends React.Component {
     }
   }
 
+  handleButton = async () => {
+    const { fetchToken } = this.props;
+    this.setState({
+      redirect: true,
+    });
+    await fetchToken();
+  }
+
   render() {
-    const { isDisabled, name, email } = this.state;
+    const { isDisabled, name, email, redirect } = this.state;
     return (
       <section>
         <form>
@@ -64,20 +76,30 @@ class Login extends React.Component {
             />
           </label>
 
-          <Link to="/play">
-            <button
-              data-testid="btn-play"
-              type="button"
-              disabled={ isDisabled }
-            >
-              Play
-            </button>
-          </Link>
+          <button
+            data-testid="btn-play"
+            type="button"
+            disabled={ isDisabled }
+            onClick={ this.handleButton }
+          >
+            Play
+          </button>
         </form>
         <Button />
+        { redirect && <Redirect to="/play" /> }
       </section>
     );
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  myToken: state.token.token,
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchToken: () => dispatch(getToken()),
+});
+
+Login.propTypes = {
+  fetchToken: PropTypes.func.isRequired,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
