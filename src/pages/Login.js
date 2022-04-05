@@ -37,12 +37,14 @@ class Login extends React.Component {
     }
   }
 
-  handleButton = async () => {
-    const { fetchToken } = this.props;
+  handleButton = () => {
+    const { fetchToken, userInfo } = this.props;
+    const { name, email } = this.state;
     this.setState({
       redirect: true,
     });
-    await fetchToken();
+    fetchToken();
+    userInfo(name, email);
   }
 
   render() {
@@ -97,9 +99,11 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchToken: () => dispatch(getToken()),
+  userInfo: (name, email) => dispatch(getUserInfo(name, email)),
 });
 
 Login.propTypes = {
   fetchToken: PropTypes.func.isRequired,
+  userInfo: PropTypes.func.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
