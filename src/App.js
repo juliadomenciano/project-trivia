@@ -4,11 +4,15 @@ import './App.css';
 import Login from './pages/Login';
 import Play from './pages/Play';
 
-export default function App() {
-  return (
-    <Switch>
-      <Route exact path="/" component={ Login } />
-      <Route exact path="/play" component={ Play } />
-    </Switch>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/" component={ Login } />
+        <Route exact path="/play" component={ Play } />
+      </Switch>
+    );
+  }
 }
+
+export default App;

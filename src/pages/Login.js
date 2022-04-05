@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
   constructor() {
@@ -7,6 +8,7 @@ class Login extends React.Component {
       name: '',
       email: '',
       isDisabled: true,
+      redirect: false,
     };
   }
 
@@ -31,8 +33,14 @@ class Login extends React.Component {
     }
   }
 
+  handleButton = () => {
+    this.setState({
+      redirect: true,
+    });
+  }
+
   render() {
-    const { isDisabled, name, email } = this.state;
+    const { isDisabled, name, email, redirect } = this.state;
     return (
       <section>
         <form>
@@ -66,11 +74,12 @@ class Login extends React.Component {
             data-testid="btn-play"
             type="button"
             disabled={ isDisabled }
-            onClick={ this.validateButton }
+            onClick={ this.handleButton }
           >
             Play
           </button>
         </form>
+        { redirect && <Redirect to="/play" /> }
       </section>
     );
   }
