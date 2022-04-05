@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 class Login extends React.Component {
   constructor() {
@@ -62,15 +64,17 @@ class Login extends React.Component {
             />
           </label>
 
-          <button
-            data-testid="btn-play"
-            type="button"
-            disabled={ isDisabled }
-            onClick={ this.validateButton }
-          >
-            Play
-          </button>
+          <Link to="/play">
+            <button
+              data-testid="btn-play"
+              type="button"
+              disabled={ isDisabled }
+            >
+              Play
+            </button>
+          </Link>
         </form>
+        <Button />
       </section>
     );
   }
