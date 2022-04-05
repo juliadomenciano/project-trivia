@@ -1,13 +1,9 @@
 import React from 'react';
-<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getToken } from '../redux/actions';
-=======
-import { Link } from 'react-router-dom';
 import Button from '../components/Button';
->>>>>>> main-group-11
 
 class Login extends React.Component {
   constructor() {
@@ -80,7 +76,6 @@ class Login extends React.Component {
             />
           </label>
 
-<<<<<<< HEAD
           <button
             data-testid="btn-play"
             type="button"
@@ -90,20 +85,8 @@ class Login extends React.Component {
             Play
           </button>
         </form>
-        { redirect && <Redirect to="/play" /> }
-=======
-          <Link to="/play">
-            <button
-              data-testid="btn-play"
-              type="button"
-              disabled={ isDisabled }
-            >
-              Play
-            </button>
-          </Link>
-        </form>
         <Button />
->>>>>>> main-group-11
+        { redirect && <Redirect to="/play" /> }
       </section>
     );
   }
