@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getToken } from '../redux/actions';
 
 class Login extends React.Component {
   constructor() {
@@ -33,10 +36,12 @@ class Login extends React.Component {
     }
   }
 
-  handleButton = () => {
+  handleButton = async () => {
+    const { fetchToken } = this.props;
     this.setState({
       redirect: true,
     });
+    await fetchToken();
   }
 
   render() {
@@ -85,4 +90,14 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  myToken: state.token.token,
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchToken: () => dispatch(getToken()),
+});
+
+Login.propTypes = {
+  fetchToken: PropTypes.func.isRequired,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
