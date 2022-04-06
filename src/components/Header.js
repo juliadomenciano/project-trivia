@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
@@ -8,8 +9,8 @@ class Header extends Component {
       <section>
         <div>
           <img
-            src=""
-            alt=""
+            src="https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc"
+            alt="foto"
             data-testid="header-profile-picture"
           />
         </div>
@@ -36,7 +37,7 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
 });
 
-Login.propTypes = {
+Header.propTypes = {
   name: PropTypes.string.isRequired,
 
 };
