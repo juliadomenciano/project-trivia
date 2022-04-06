@@ -1,7 +1,28 @@
-const INITIAL_STATE = {};
+import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE } from '../actions';
+
+const INITIAL_STATE = {
+  response: false,
+  error: null,
+  data: {},
+};
 
 const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case REQUEST_API:
+    return {
+      ...state,
+      response: true,
+    };
+  case RESPONSE_API:
+    return {
+      ...state,
+      data: action.data,
+    };
+  case RECEIVE_API_FAILURE:
+    return {
+      ...state,
+      error: action.error,
+    };
   default:
     return state;
   }
