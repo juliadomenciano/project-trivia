@@ -12,23 +12,31 @@ class Question extends React.Component {
 
   render() {
     const { askQuestion } = this.props;
-    console.log(askQuestion.question);
-    const respostas = [...askQuestion.incorrect_answer, askQuestion.correct_answer];
+    console.log(askQuestion);
+    // const respostas = [...askQuestion.incorrect_answer, askQuestion.correct_answer];
     return (
-      // corretc_answer
-      // incorret_answer
       <section>
         <h1 data-testid="question-category">{ askQuestion.category }</h1>
         <h3 data-testid="question-text">{ askQuestion.question }</h3>
         <div data-testid="answer-options">
           {
-            respostas.map((item, index) => {
-              item === askQuestion.correct_answer ? (
-              <button data-testid="correct-answer">{ item }</button>
-              ) : <button data-testid={`wrong-answer-${index}`}>{ item }</button>
-            })
+            askQuestion.incorrect_answers.map((item, index) => (
+              <button
+                data-testid={ `wrong-answer-${index}` }
+                type="button"
+                key={ index }
+              >
+                { item }
+              </button>
+            ))
           }
         </div>
+        <button
+          data-testid="correct-answer"
+          type="button"
+        >
+          { askQuestion.correct_answer }
+        </button>
       </section>
     );
   }
@@ -39,9 +47,7 @@ const mapStateToProps = (state) => ({
 });
 
 Question.propTypes = {
-  datatest: PropTypes.arrayOf(PropTypes.string).isRequired,
-  question: PropTypes.arrayOf(PropTypes.number).isRequired,
-  askQuestion: PropTypes.arrayOf(PropTypes.string).isRequired,
+  askQuestion: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Question);

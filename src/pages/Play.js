@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Question from '../components/Question';
 import { getToken, getAPIdata } from '../redux/actions';
@@ -13,15 +14,9 @@ class Play extends Component {
   }
 
   async componentDidMount() {
-    const { myToken, fetchToken, get_Api_Response } = this.props;
-    const three = 3;
+    const { myToken, getApiResponse } = this.props;
     const times = 5;
-    await get_Api_Response(myToken, times);
-    const { datatest } = this.props;
-    // if (datatest.response_code === three) {
-    //   await fetchToken();
-    //   await get_Api_Response(myToken, times);
-    // }
+    await getApiResponse(myToken, times);
   }
 
   render() {
@@ -44,16 +39,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchToken: () => dispatch(getToken()),
-  get_Api_Response: (myToken, times) => dispatch(getAPIdata(myToken, times)),
+  getApiResponse: (myToken, times) => dispatch(getAPIdata(myToken, times)),
 });
 
 Play.propTypes = {
   datatest: PropTypes.arrayOf(PropTypes.string).isRequired,
-  myToken: PropTypes.arrayOf(PropTypes.string).isRequired,
-  fetchToken: PropTypes.arrayOf(PropTypes.string).isRequired,
-  get_Api_Response: PropTypes.arrayOf(PropTypes.string).isRequired,
+  myToken: PropTypes.string.isRequired,
+  getApiResponse: PropTypes.func.isRequired,
 };
-
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Play);
