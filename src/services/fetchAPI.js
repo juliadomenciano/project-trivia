@@ -1,11 +1,9 @@
-const five = 5;
-
-const fetchAPI = async (token, timeAsks = five) => {
+const fetchAPI = async (token, timeAsks) => {
   const url = `https://opentdb.com/api.php?amount=${timeAsks}&token=${token}`;
   const response = await fetch(url);
-  const data = response.json();
-
-  return response.ok ? Promise.resolve(data) : Promise.reject(data);
+  const data = await response.json();
+  return data.results;
+  // response.ok ? Promise.resolve(data) : Promise.reject(data);
 };
 
 export default fetchAPI;

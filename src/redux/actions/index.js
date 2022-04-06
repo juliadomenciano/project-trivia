@@ -1,3 +1,5 @@
+import fetchAPI from '../../services/fetchAPI';
+
 export const RECEIVE_API_SUCCESS = 'RECEIVE_API_SUCCESS';
 export const RECEIVE_API_FAILURE = 'RECEIVE_API_FAILURE';
 export const RESPONSE_API = 'RESPONSE_API';
@@ -21,16 +23,21 @@ export const getToken = () => async (dispatch) => {
   dispatch(receiveTokenSuccess(data.token));
 };
 
-export const requestAPI = () => ({
-  type: REQUEST_API,
-});
-
 export const responseAPI = (data) => ({
   type: RESPONSE_API,
   data,
 });
 
-export const failureAPI = (error) => ({
-  type: RECEIVE_API_FAILURE,
-  error,
-});
+export const getAPIdata = (myToken, times) => async (dispatch) => {
+  const request = await fetchAPI(myToken, times);
+  dispatch(responseAPI(request));
+};
+
+// export const requestAPI = () => ({
+//   type: REQUEST_API,
+// });
+
+// export const failureAPI = (error) => ({
+//   type: RECEIVE_API_FAILURE,
+//   error,
+// });

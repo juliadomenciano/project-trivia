@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import fetchAPI from '../services/fetchAPI';
 import Header from '../components/Header';
-import { getToken } from '../redux/actions';
+import Question from '../components/Question';
+import { getToken, getAPIdata } from '../redux/actions';
 
 class Play extends Component {
-  componentDidMount() {
-    const { myToken, fetchToken } = this.props;
-    const result = fetchAPI(myToken);
+  constructor() {
+    super();
+    this.state = {
+      questionIndex: 0,
+    };
+  }
 
-    if (result.response_code === 3) {
-      fetchToken();
-    }
-    
+  async componentDidMount() {
+    const { myToken, fetchToken, get_Api_Response } = this.props;
+    const three = 3;
+    const times = 5;
+    await get_Api_Response(myToken, times);
+    const { datatest } = this.props;
+    // if (datatest.response_code === three) {
+    //   await fetchToken();
+    //   await get_Api_Response(myToken, times);
+    // }
   }
 
   render() {
+    const { datatest } = this.props;
+    const { questionIndex } = this.state;
+
     return (
       <section>
         <Header />
+        { datatest.length && <Question askQuestion={ datatest[questionIndex] } /> }
       </section>
     );
   }
@@ -26,10 +39,21 @@ class Play extends Component {
 
 const mapStateToProps = (state) => ({
   myToken: state.token,
+  datatest: state.player.data,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchToken: () => dispatch(getToken()),
+  get_Api_Response: (myToken, times) => dispatch(getAPIdata(myToken, times)),
 });
+
+Play.propTypes = {
+  datatest: PropTypes.arrayOf(PropTypes.string).isRequired,
+  myToken: PropTypes.arrayOf(PropTypes.string).isRequired,
+  fetchToken: PropTypes.arrayOf(PropTypes.string).isRequired,
+  get_Api_Response: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Play);

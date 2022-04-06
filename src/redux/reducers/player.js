@@ -3,7 +3,7 @@ import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE, USER_INFO } from '../ac
 const INITIAL_STATE = {
   response: false,
   error: null,
-  data: {},
+  data: [],
   name: '',
   email: '',
 };
@@ -27,12 +27,16 @@ const player = (state = INITIAL_STATE, action) => {
     };
   case USER_INFO:
     return {
+      ...state,
       name: action.name,
       email: action.email,
     };
   default:
     return state;
   }
+};
+
+  
 };
 
 export default player;
