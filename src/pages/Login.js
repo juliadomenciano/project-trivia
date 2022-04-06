@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getToken } from '../redux/actions';
+import { getToken, getUserInfo } from '../redux/actions';
 import Button from '../components/Button';
 
 class Login extends React.Component {
@@ -37,12 +37,14 @@ class Login extends React.Component {
     }
   }
 
-  handleButton = async () => {
-    const { fetchToken } = this.props;
+  handleButton = () => {
+    const { fetchToken, userInfo } = this.props;
+    const { name, email } = this.state;
     this.setState({
       redirect: true,
     });
-    await fetchToken();
+    fetchToken();
+    userInfo(name, email);
   }
 
   render() {
@@ -97,9 +99,11 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchToken: () => dispatch(getToken()),
+  userInfo: (name, email) => dispatch(getUserInfo(name, email)),
 });
 
 Login.propTypes = {
   fetchToken: PropTypes.func.isRequired,
+  userInfo: PropTypes.func.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
