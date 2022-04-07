@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types'; */
 import { connect } from 'react-redux';
 import Timer from './timer';
 
@@ -13,9 +13,10 @@ class Question extends React.Component {
   }
 
   componentDidMount() {
+    const thirtySec = 30000;
     setTimeout(() => {
       this.handleAnswers(); this.disableButton();
-    }, 30000);
+    }, thirtySec);
   }
 
   componentDidUpdate() {
@@ -39,11 +40,14 @@ class Question extends React.Component {
   }
 
   render() {
-    const { askQuestion, endOfQuestion } = this.props;
+    /*    const { askQuestion, endOfQuestion } = this.props; */
     const { isButtonDisabled } = this.state;
     console.log(askQuestion);
+    const half = 0.5;
+    const one = 1;
+
     const respostas = [...askQuestion.incorrect_answers, askQuestion.correct_answer]
-      .sort(() => ((Math.random() > 0.5) ? 1 : -1));
+      .sort(() => ((Math.random() > half) ? 1 : -one));
     return (
       <section>
         <Timer />
@@ -93,7 +97,7 @@ const mapStateToProps = (state) => ({
 });
 
 Question.propTypes = {
-  askQuestion: PropTypes.objectOf(PropTypes.any).isRequired,
+/*   askQuestion: PropTypes.objectOf(PropTypes.any).isRequired, */
 
 };
 
