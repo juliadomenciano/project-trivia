@@ -40,7 +40,7 @@ class Question extends React.Component {
   }
 
   render() {
-    /*    const { askQuestion, endOfQuestion } = this.props; */
+    const { askQuestion } = this.props;
     const { isButtonDisabled } = this.state;
     console.log(askQuestion);
     const half = 0.5;
@@ -93,7 +93,7 @@ class Question extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  endOfQuestion: state.player.answers,
+  // endOfQuestion: state.player.answers,
 });
 
 Question.propTypes = {
