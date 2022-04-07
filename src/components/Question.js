@@ -32,6 +32,8 @@ disableButton = () => {
 }
 
 handleAnswers = () => {
+  const { showNextButton } = this.props;
+  showNextButton();
   document.querySelectorAll('.wrong').forEach((item) => {
     item.style.border = '3px solid rgb(255, 0, 0)';
   });
@@ -97,9 +99,8 @@ const mapStateToProps = () => ({
 });
 
 Question.propTypes = {
-// Falta fazer as propTypes
-  askQuestion: PropTypes.objectOf(PropTypes.any).isRequired,
-
-};
+  showNextButton: PropTypes.func,
+  askQuestion: PropTypes.objectOf(PropTypes.any),
+}.isRequired;
 
 export default connect(mapStateToProps)(Question);

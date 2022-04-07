@@ -10,6 +10,7 @@ class Play extends Component {
     super();
     this.state = {
       questionIndex: 0,
+      isHiddenButton: true,
     };
   }
 
@@ -20,24 +21,38 @@ class Play extends Component {
   }
 
   handleNextQuestion = () => {
-    this.setState((prev) => ({ questionIndex: prev.questionIndex + 1 }));
+    this.setState((prev) => ({
+      questionIndex: prev.questionIndex + 1,
+      isHiddenButton: true,
+    }));
   };
+
+  showNextButton = () => {
+    this.setState({ isHiddenButton: false });
+  }
 
   render() {
     const { datatest } = this.props;
-    const { questionIndex } = this.state;
+    const { questionIndex, isHiddenButton } = this.state;
 
     return (
       <section>
         <Header />
         {datatest.length ? (
-          <Question askQuestion={ datatest[questionIndex] } />
+          <Question
+            askQuestion={ datatest[questionIndex] }
+            showNextButton={ this.showNextButton }
+          />
         ) : (
           ''
         )}
-
-        <button type="button" onClick={ () => this.handleNextQuestion() }>
-          Next question
+        <button
+          type="button"
+          onClick={ () => this.handleNextQuestion() }
+          hidden={ isHiddenButton }
+          data-testid="btn-next"
+        >
+          Next
         </button>
       </section>
     );
