@@ -5,6 +5,7 @@ export const RECEIVE_API_FAILURE = 'RECEIVE_API_FAILURE';
 export const RESPONSE_API = 'RESPONSE_API';
 export const REQUEST_API = 'REQUEST_API';
 export const USER_INFO = 'USER_INFO';
+export const SHOW_ANSWERS = 'SHOW_ANSWERS';
 
 export const receiveTokenSuccess = (token) => ({
   type: RECEIVE_API_SUCCESS,
@@ -33,11 +34,7 @@ export const getAPIdata = (myToken, times) => async (dispatch) => {
   dispatch(responseAPI(request));
 };
 
-// export const requestAPI = () => ({
-//   type: REQUEST_API,
-// });
-
-// export const failureAPI = (error) => ({
-//   type: RECEIVE_API_FAILURE,
-//   error,
-// });
+export const showAnswers = (showResults) => ({
+  type: SHOW_ANSWERS,
+  showResults,
+});

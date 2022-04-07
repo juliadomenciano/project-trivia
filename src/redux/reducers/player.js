@@ -1,4 +1,5 @@
-import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE, USER_INFO } from '../actions';
+import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE, USER_INFO,
+  SHOW_ANSWERS } from '../actions';
 
 const INITIAL_STATE = {
   response: false,
@@ -6,6 +7,7 @@ const INITIAL_STATE = {
   data: [],
   name: '',
   email: '',
+  showResults: false,
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -30,6 +32,11 @@ const player = (state = INITIAL_STATE, action) => {
       ...state,
       name: action.name,
       email: action.email,
+    };
+  case SHOW_ANSWERS:
+    return {
+      ...state,
+      showResults: action.showResults,
     };
   default:
     return state;

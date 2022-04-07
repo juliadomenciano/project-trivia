@@ -1,8 +1,22 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Timer from './timer';
 
 class Question extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isButtonDisabled: false,
+      showAnswers: false,
+    };
+  }
+
+  componentDidUpdate() {
+    console.log('oi');
+  }
+
   handleAnswers = () => {
     document.querySelectorAll('.wrong').forEach((item) => {
       item.style.border = '3px solid rgb(255, 0, 0)';
@@ -12,11 +26,13 @@ class Question extends React.Component {
 
   render() {
     const { askQuestion } = this.props;
+    const { isButtonDisabled } = this.state;
     console.log(askQuestion);
     const respostas = [...askQuestion.incorrect_answers, askQuestion.correct_answer]
       .sort(() => ((Math.random() > 0.5) ? 1 : -1));
     return (
       <section>
+        <Timer />
         <h1 data-testid="question-category">{ askQuestion.category }</h1>
         <h3 data-testid="question-text">{ askQuestion.question }</h3>
         <div data-testid="answer-options">
@@ -29,6 +45,7 @@ class Question extends React.Component {
                     type="button"
                     key={ index }
                     onClick={ this.handleAnswers }
+                    isDisabled={ isButtonDisabled }
                     className="correct"
                   >
                     { askQuestion.correct_answer }
@@ -41,6 +58,7 @@ class Question extends React.Component {
                   type="button"
                   key={ index }
                   onClick={ this.handleAnswers }
+                  isDisabled={ isButtonDisabled }
                   className="wrong"
                 >
                   { item }
@@ -56,9 +74,13 @@ class Question extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  endOfQuestion: state.player.answers,
+});
+
 Question.propTypes = {
   askQuestion: PropTypes.objectOf(PropTypes.any).isRequired,
 
 };
 
-export default Question;
+export default connect(mapStateToProps)(Question);
