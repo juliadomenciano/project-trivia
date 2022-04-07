@@ -37,14 +37,15 @@ class Login extends React.Component {
     }
   }
 
-  handleButton = async () => {
+  handleButton = () => {
     const { fetchToken, userInfo } = this.props;
     const { name, email } = this.state;
     this.setState({
       redirect: true,
+    }, () => {
+      fetchToken();
+      userInfo(name, email);
     });
-    await fetchToken();
-    userInfo(name, email);
   }
 
   render() {
@@ -95,7 +96,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  myToken: state.token.token,
+  myToken: state.token,
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchToken: () => dispatch(getToken()),
@@ -105,6 +106,5 @@ const mapDispatchToProps = (dispatch) => ({
 Login.propTypes = {
   fetchToken: PropTypes.func.isRequired,
   userInfo: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
