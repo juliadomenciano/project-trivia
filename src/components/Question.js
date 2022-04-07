@@ -1,6 +1,5 @@
 import React from 'react';
-
-/* import PropTypes from 'prop-types'; */
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Timer from './timer';
 
@@ -92,12 +91,13 @@ class Question extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
   // endOfQuestion: state.player.answers,
 });
 
 Question.propTypes = {
-/*   askQuestion: PropTypes.objectOf(PropTypes.any).isRequired, */
+  // Falta fazer as propTypes
+  askQuestion: PropTypes.objectOf(PropTypes.any).isRequired,
 
 };
 
