@@ -1,4 +1,9 @@
-import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE, USER_INFO } from '../actions';
+import {
+  REQUEST_API,
+  RESPONSE_API,
+  RECEIVE_API_FAILURE,
+  USER_INFO,
+} from '../actions';
 
 const INITIAL_STATE = {
   response: false,

@@ -19,6 +19,10 @@ class Play extends Component {
     getApiResponse(myToken, times);
   }
 
+  handleNextQuestion = () => {
+    this.setState((prev) => ({ questionIndex: prev.questionIndex + 1 }));
+  };
+
   render() {
     const { datatest } = this.props;
     const { questionIndex } = this.state;
@@ -26,7 +30,15 @@ class Play extends Component {
     return (
       <section>
         <Header />
-        { datatest.length && <Question askQuestion={ datatest[questionIndex] } /> }
+        {datatest.length ? (
+          <Question askQuestion={ datatest[questionIndex] } />
+        ) : (
+          ''
+        )}
+
+        <button type="button" onClick={ () => this.handleNextQuestion() }>
+          Next question
+        </button>
       </section>
     );
   }
