@@ -31,7 +31,7 @@ class Timer extends React.Component {
   HandleInterval = (prevProps, prevState) => {
     const { endOfQuestion } = this.props;
     /*     const { showResults } = this.state; */
-    const thirty = 3;
+    const thirty = 30;
     if (prevState.seconds === thirty) {
       this.setState({
         seconds: 0,

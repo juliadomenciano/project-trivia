@@ -18,10 +18,13 @@ class Login extends React.Component {
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    this.setState({
-      [name]: value,
-    }, this.validateButton);
-  }
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.validateButton,
+    );
+  };
 
   validateButton = () => {
     const { email, name } = this.state;
@@ -35,27 +38,35 @@ class Login extends React.Component {
         isDisabled: true,
       });
     }
-  }
+  };
 
-  handleButton = () => {
+  handleButton = async () => {
     const { fetchToken, userInfo } = this.props;
     const { name, email } = this.state;
+    await fetchToken();
+    userInfo(name, email);
+
     this.setState({
       redirect: true,
-    }, () => {
-      fetchToken();
-      userInfo(name, email);
     });
-  }
+
+    // this.setState(
+    // {
+    // redirect: true,
+    // },
+    // async () => {
+    // await fetchToken();
+    // userInfo(name, email);
+    // },
+    // );
+  };
 
   render() {
     const { isDisabled, name, email, redirect } = this.state;
     return (
       <section>
         <form>
-          <label
-            htmlFor="name"
-          >
+          <label htmlFor="name">
             Nome:
             <input
               type="text"
@@ -66,9 +77,7 @@ class Login extends React.Component {
             />
           </label>
 
-          <label
-            htmlFor="name"
-          >
+          <label htmlFor="name">
             Email:
             <input
               type="email"
@@ -89,7 +98,7 @@ class Login extends React.Component {
           </button>
         </form>
         <Button />
-        { redirect && <Redirect to="/play" /> }
+        {redirect && <Redirect to="/play" />}
       </section>
     );
   }

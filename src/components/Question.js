@@ -9,12 +9,26 @@ class Question extends React.Component {
     super();
     this.state = {
       isButtonDisabled: false,
-      showAnswers: false,
     };
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.handleAnswers(); this.disableButton();
+    }, 30000);
+  }
+
   componentDidUpdate() {
-    console.log('oi');
+    this.disableButton();
+  }
+
+  disableButton = () => {
+    const { isButtonDisabled } = this.state;
+    if (!isButtonDisabled) {
+      this.setState(
+        { isButtonDisabled: true },
+      );
+    }
   }
 
   handleAnswers = () => {
@@ -25,7 +39,7 @@ class Question extends React.Component {
   }
 
   render() {
-    const { askQuestion } = this.props;
+    const { askQuestion, endOfQuestion } = this.props;
     const { isButtonDisabled } = this.state;
     console.log(askQuestion);
     const respostas = [...askQuestion.incorrect_answers, askQuestion.correct_answer]
@@ -45,7 +59,7 @@ class Question extends React.Component {
                     type="button"
                     key={ index }
                     onClick={ this.handleAnswers }
-                    isDisabled={ isButtonDisabled }
+                    disabled={ isButtonDisabled }
                     className="correct"
                   >
                     { askQuestion.correct_answer }
@@ -58,7 +72,7 @@ class Question extends React.Component {
                   type="button"
                   key={ index }
                   onClick={ this.handleAnswers }
-                  isDisabled={ isButtonDisabled }
+                  disabled={ isButtonDisabled }
                   className="wrong"
                 >
                   { item }
