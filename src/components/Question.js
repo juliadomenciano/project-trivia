@@ -3,6 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Question extends React.Component {
+  handleAnswers = () => {
+    document.querySelectorAll('.wrong').forEach((item) => {
+      item.style.border = '3px solid rgb(255, 0, 0)';
+    });
+    document.querySelector('.correct').style.border = '3px solid rgb(6, 240, 15)';
+  }
+
   render() {
     const { askQuestion } = this.props;
     console.log(askQuestion);
@@ -21,6 +28,8 @@ class Question extends React.Component {
                     data-testid="correct-answer"
                     type="button"
                     key={ index }
+                    onClick={ this.handleAnswers }
+                    className="correct"
                   >
                     { askQuestion.correct_answer }
                   </button>
@@ -31,6 +40,8 @@ class Question extends React.Component {
                   data-testid={ `wrong-answer-${index}` }
                   type="button"
                   key={ index }
+                  onClick={ this.handleAnswers }
+                  className="wrong"
                 >
                   { item }
                 </button>
