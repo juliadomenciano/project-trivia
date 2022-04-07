@@ -13,10 +13,10 @@ class Play extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { myToken, getApiResponse } = this.props;
     const times = 5;
-    await getApiResponse(myToken, times);
+    getApiResponse(myToken, times);
   }
 
   render() {
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Play.propTypes = {
-  datatest: PropTypes.arrayOf(PropTypes.string).isRequired,
+  datatest: PropTypes.arrayOf(PropTypes.any).isRequired,
   myToken: PropTypes.string.isRequired,
   getApiResponse: PropTypes.func.isRequired,
 };
