@@ -4,15 +4,26 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 
 class Feedback extends Component {
+  componentDidMount() {
+    const { score, name } = this.props;
+    localStorage.setItem('ranking', [
+      JSON.stringify({ name, score, picture: 'https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc' }),
+    ]);
+  }
+
   render() {
-    const { assertions } = this.props;
+    const { assertions, score } = this.props;
     const three = 3;
+    console.log('assertions:', typeof assertions);
+    console.log('score:', typeof score);
     return (
       <section>
         <Header />
         <h1 data-testid="feedback-text">
           {assertions >= three ? 'Well Done!' : 'Could be better...'}
         </h1>
+        <h2 data-testid="feedback-total-score">{score}</h2>
+        <h3 data-testid="feedback-total-question">{parseInt(assertions, 10)}</h3>
       </section>
     );
   }
@@ -20,10 +31,14 @@ class Feedback extends Component {
 
 Feedback.propTypes = {
   assertions: PropTypes.number,
+  score: PropTypes.number,
+  name: PropTypes.string,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
+  score: state.player.score,
+  name: state.player.name,
 });
 
 const mapDispatchToProps = () => ({
