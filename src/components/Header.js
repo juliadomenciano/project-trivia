@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     const { name, score } = this.props;
     return (
-      <section>
+      <header>
         <div>
           <img
             src="https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc"
@@ -15,20 +15,10 @@ class Header extends Component {
           />
         </div>
         <div>
-          <p
-            data-testid="header-player-name"
-          >
-            {name}
-
-          </p>
-          <p
-            data-testid="header-score"
-          >
-            {score}
-
-          </p>
+          <p data-testid="header-player-name">{name}</p>
+          <p data-testid="header-score">{score}</p>
         </div>
-      </section>
+      </header>
     );
   }
 }

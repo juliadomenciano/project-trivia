@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import Timer from './Timer';
 
 class Question extends React.Component {
-  componentDidUpdate() {
-    // this.disableButton();
-  }
-
   render() {
     const {
       askQuestion,

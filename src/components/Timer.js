@@ -1,7 +1,5 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
-// import { showAnswers } from '../redux/actions';
+import PropTypes from 'prop-types';
 
 class Timer extends React.Component {
   componentDidMount() {
@@ -30,8 +28,10 @@ class Timer extends React.Component {
   }
 }
 
-// Timer.propTypes = {
-
-// };
+Timer.propTypes = {
+  handleTimer: PropTypes.func,
+  HandleInterval: PropTypes.func,
+  seconds: PropTypes.number,
+}.isRequired;
 
 export default Timer;

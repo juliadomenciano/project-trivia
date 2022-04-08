@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Question from '../components/Question';
 import { getToken, getAPIdata, addTotalScore } from '../redux/actions';
@@ -14,6 +15,7 @@ class Play extends Component {
       isHiddenButton: true,
       seconds: 30,
       isButtonDisabled: false,
+      redirect: false,
     };
   }
 
@@ -24,6 +26,10 @@ class Play extends Component {
   }
 
   handleNextQuestion = () => {
+    const { questionIndex } = this.state;
+    const four = 4;
+    if (questionIndex === four) this.setState({ redirect: true });
+
     this.setState((prev) => ({
       questionIndex: prev.questionIndex + 1,
       isHiddenButton: true,
@@ -36,13 +42,6 @@ class Play extends Component {
     document.querySelector('.correct').style.border = '1px solid black';
     this.handleTimer();
   };
-
-  aTimer = () => {
-    const thirtySec = 30000;
-    setTimeout(() => {
-      this.handleAnswers(); this.disableButton();
-    }, thirtySec);
-  }
 
   handleTimer = () => {
     const oneSecond = 1000;
@@ -86,16 +85,15 @@ class Play extends Component {
     const { datatest, addScore } = this.props;
     const obj = { easy: 1, medium: 2, hard: 3 };
     const total = dez + (seconds * obj[datatest[questionIndex].difficulty]);
-    // console.log(total);
-    // console.log(seconds);
-    // console.log(obj[difficulty]);
-    console.log(datatest);
     addScore(total);
   }
 
   render() {
     const { datatest } = this.props;
-    const { questionIndex, isHiddenButton, seconds, isButtonDisabled } = this.state;
+    const {
+      questionIndex,
+      isHiddenButton, seconds, isButtonDisabled, redirect } = this.state;
+    const four = 4;
 
     return (
       <section>
@@ -105,7 +103,8 @@ class Play extends Component {
           handleTimer={ this.handleTimer }
           HandleInterval={ this.HandleInterval }
         />
-        {datatest.length ? (
+        {redirect && <Redirect to="/feedback" />}
+        {(datatest.length && questionIndex <= four) && (
           <Question
             askQuestion={ datatest[questionIndex] }
             showNextButton={ this.showNextButton }
@@ -113,9 +112,8 @@ class Play extends Component {
             handleAnswers={ this.handleAnswers }
             handleCorrectAnswers={ this.handleCorrectAnswers }
           />
-        ) : (
-          ''
         )}
+
         <button
           type="button"
           onClick={ () => this.handleNextQuestion() }

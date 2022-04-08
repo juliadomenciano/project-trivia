@@ -49,16 +49,6 @@ class Login extends React.Component {
     this.setState({
       redirect: true,
     });
-
-    // this.setState(
-    // {
-    // redirect: true,
-    // },
-    // async () => {
-    // await fetchToken();
-    // userInfo(name, email);
-    // },
-    // );
   };
 
   render() {
