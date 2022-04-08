@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    const { name } = this.props;
+    const { name, score } = this.props;
     return (
       <section>
         <div>
@@ -24,7 +24,7 @@ class Header extends Component {
           <p
             data-testid="header-score"
           >
-            {0}
+            {score}
 
           </p>
         </div>
@@ -35,10 +35,11 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   name: state.player.name,
+  score: state.player.score,
 });
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
-
+  score: PropTypes.number.isRequired,
 };
 export default connect(mapStateToProps)(Header);

@@ -4,20 +4,16 @@ import { connect } from 'react-redux';
 // import Timer from './Timer';
 
 class Question extends React.Component {
-  // componentDidMount() {
-  //   // this.aTimer();
-  //   // const thirtySec = 30000;
-  //   // setTimeout(() => {
-  //   //   this.handleAnswers(); this.disableButton();
-  //   // }, thirtySec);
-  // }
-
   componentDidUpdate() {
     // this.disableButton();
   }
 
   render() {
-    const { askQuestion, isButtonDisabled, handleAnswers } = this.props;
+    const {
+      askQuestion,
+      isButtonDisabled,
+      handleAnswers,
+      handleCorrectAnswers } = this.props;
     console.log(askQuestion);
     const half = 0.5;
     const one = 1;
@@ -37,7 +33,7 @@ class Question extends React.Component {
                     data-testid="correct-answer"
                     type="button"
                     key={ index }
-                    onClick={ handleAnswers }
+                    onClick={ handleCorrectAnswers }
                     disabled={ isButtonDisabled }
                     className="correct"
                   >

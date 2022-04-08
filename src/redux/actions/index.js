@@ -6,6 +6,7 @@ export const RESPONSE_API = 'RESPONSE_API';
 export const REQUEST_API = 'REQUEST_API';
 export const USER_INFO = 'USER_INFO';
 export const SHOW_ANSWERS = 'SHOW_ANSWERS';
+export const TOTAL_SCORE = 'TOTAL_SCORE';
 
 export const receiveTokenSuccess = (token) => ({
   type: RECEIVE_API_SUCCESS,
@@ -37,4 +38,9 @@ export const getAPIdata = (myToken, times) => async (dispatch) => {
 export const showAnswers = (showResults) => ({
   type: SHOW_ANSWERS,
   showResults,
+});
+
+export const addTotalScore = (total) => ({
+  type: TOTAL_SCORE,
+  score: total,
 });
