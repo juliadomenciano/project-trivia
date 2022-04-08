@@ -28,6 +28,9 @@ class Feedback extends Component {
         <Link to="/">
           <button type="button" data-testid="btn-play-again">Play Again</button>
         </Link>
+        <Link to="/ranking">
+          <button type="button" data-testid="btn-ranking">Ranking</button>
+        </Link>
       </section>
     );
   }
@@ -45,8 +48,6 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
 });
 
-const mapDispatchToProps = () => ({
-
-});
+const mapDispatchToProps = () => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
