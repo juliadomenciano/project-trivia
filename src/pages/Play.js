@@ -18,8 +18,6 @@ class Play extends Component {
     };
   }
 
-  // att
-
   componentDidMount() {
     const { myToken, getApiResponse } = this.props;
     const times = 5;
@@ -56,7 +54,8 @@ class Play extends Component {
 
   HandleInterval = () => {
     const zero = 0;
-    if (this.state.seconds === zero) {
+    const { seconds } = this.state;
+    if (seconds === zero) {
       this.setState({
         seconds: '0',
         isButtonDisabled: true,
