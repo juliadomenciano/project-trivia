@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    const { name } = this.props;
+    const { name, score } = this.props;
     return (
-      <section>
+      <header>
         <div>
           <img
             src="https://www.gravatar.com/avatar/c19ad9dbaf91c5533605fbf985177ccc"
@@ -15,30 +15,21 @@ class Header extends Component {
           />
         </div>
         <div>
-          <p
-            data-testid="header-player-name"
-          >
-            {name}
-
-          </p>
-          <p
-            data-testid="header-score"
-          >
-            {0}
-
-          </p>
+          <p data-testid="header-player-name">{name}</p>
+          <p data-testid="header-score">{score}</p>
         </div>
-      </section>
+      </header>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   name: state.player.name,
+  score: state.player.score,
 });
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
-
+  score: PropTypes.number.isRequired,
 };
 export default connect(mapStateToProps)(Header);
