@@ -139,10 +139,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Play.propTypes = {
-  datatest: PropTypes.arrayOf(PropTypes.any).isRequired,
-  myToken: PropTypes.string.isRequired,
-  getApiResponse: PropTypes.func.isRequired,
-  addScore: PropTypes.func.isRequired,
-};
+  datatest: PropTypes.arrayOf(PropTypes.any),
+  myToken: PropTypes.string,
+  getApiResponse: PropTypes.func,
+  addScore: PropTypes.func,
+}.isRequired;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Play);
