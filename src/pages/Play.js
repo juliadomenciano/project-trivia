@@ -18,6 +18,8 @@ class Play extends Component {
     };
   }
 
+  // att
+
   componentDidMount() {
     const { myToken, getApiResponse } = this.props;
     const times = 5;
