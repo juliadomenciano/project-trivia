@@ -10,7 +10,6 @@ class Button extends React.Component {
   }
 
   render() {
-  // const { } = this.state;
     return (
       <Link to="/settings">
         <button

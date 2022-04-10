@@ -1,12 +1,14 @@
 import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE, USER_INFO,
-  SHOW_ANSWERS } from '../actions';
+  SHOW_ANSWERS, TOTAL_SCORE } from '../actions';
 
 const INITIAL_STATE = {
+  assertions: 0,
+  score: 0,
   response: false,
   error: null,
   data: [],
   name: '',
-  email: '',
+  gravatarEmail: '',
   showResults: false,
 };
 
@@ -31,12 +33,18 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       name: action.name,
-      email: action.email,
+      gravatarEmail: action.email,
     };
   case SHOW_ANSWERS:
     return {
       ...state,
       showResults: action.showResults,
+    };
+  case TOTAL_SCORE:
+    return {
+      ...state,
+      score: state.score + action.score,
+      assertions: state.assertions + 1,
     };
   default:
     return state;
