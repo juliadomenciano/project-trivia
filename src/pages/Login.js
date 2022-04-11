@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { getToken, getUserInfo } from '../redux/actions';
 import Button from '../components/Button';
+import { getToken, getUserInfo } from '../redux/actions';
+import './login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -54,31 +55,38 @@ class Login extends React.Component {
   render() {
     const { isDisabled, name, email, redirect } = this.state;
     return (
-      <section>
+      <section className="formLogin">
         <form>
-          <label htmlFor="name">
+          <label htmlFor="name" id="labelName">
             Nome:
+            <br />
             <input
+              className="name"
               type="text"
               name="name"
+              placeholder="Insira seu nome aqui."
               data-testid="input-player-name"
               value={ name }
               onChange={ this.handleChange }
             />
           </label>
-
+          <br />
           <label htmlFor="name">
             Email:
+            <br />
             <input
+              className="email"
               type="email"
               name="email"
               data-testid="input-gravatar-email"
+              placeholder="Insira seu e-mail aqui."
               value={ email }
               onChange={ this.handleChange }
             />
           </label>
-
+          <br />
           <button
+            id="botao"
             data-testid="btn-play"
             type="button"
             disabled={ isDisabled }
