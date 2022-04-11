@@ -6,10 +6,9 @@ import Header from '../components/Header';
 import { resetScoreAction } from '../redux/actions';
 import './feedback.css';
 
+
 class Feedback extends Component {
   componentDidMount() {
-    const { resetScore } = this.props;
-    resetScore();
     this.getUserData();
   }
 
@@ -67,7 +66,6 @@ Feedback.propTypes = {
   assertions: PropTypes.number,
   score: PropTypes.number,
   name: PropTypes.string,
-  resetScore: PropTypes.func,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
@@ -76,8 +74,4 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  resetScore: () => dispatch(resetScoreAction()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
+export default connect(mapStateToProps)(Feedback);
