@@ -1,5 +1,5 @@
 import { REQUEST_API, RESPONSE_API, RECEIVE_API_FAILURE, USER_INFO,
-  SHOW_ANSWERS, TOTAL_SCORE } from '../actions';
+  SHOW_ANSWERS, TOTAL_SCORE, RESET_SCORE } from '../actions';
 
 const INITIAL_STATE = {
   assertions: 0,
@@ -45,6 +45,11 @@ const player = (state = INITIAL_STATE, action) => {
       ...state,
       score: state.score + action.score,
       assertions: state.assertions + 1,
+    };
+  case RESET_SCORE:
+    return {
+      ...state,
+      score: 0,
     };
   default:
     return state;

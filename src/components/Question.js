@@ -9,7 +9,6 @@ class Question extends React.Component {
       isButtonDisabled,
       handleAnswers,
       handleCorrectAnswers } = this.props;
-    console.log(askQuestion);
     const half = 0.5;
     const one = 1;
 
