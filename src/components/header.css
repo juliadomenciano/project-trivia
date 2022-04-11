@@ -3,7 +3,10 @@
 header {
   display: flex;
   justify-content: space-between;
-  margin: 10px 20px;
+  width: 80%;
+  align-self: center;
+  padding: 20px 0px;
+  color: white;
 }
 
 .user-container {

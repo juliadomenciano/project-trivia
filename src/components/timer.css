@@ -1,5 +1,7 @@
 .timer {
+  align-self: center;
+  font-size: 2rem;
   color: white;
   font-family: 'Poppins', sans-serif;
-  padding-left: 10px;
+  height: 120px;
   } 

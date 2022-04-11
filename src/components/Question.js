@@ -35,7 +35,7 @@ class Question extends React.Component {
                     id="correct"
                   >
 
-                    { askQuestion.correct_answer }
+                    { he.decode(askQuestion.correct_answer) }
                   </button>
                 );
               }
@@ -49,7 +49,7 @@ class Question extends React.Component {
                   className="button"
                   id="wrong"
                 >
-                  { item }
+                  { he.decode(item) }
                 </button>
               );
             })

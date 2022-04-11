@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Button from '../components/Button';
 import { getToken, getUserInfo } from '../redux/actions';
 import './login.css';
+import logo from '../image/trivia.png';
 
 class Login extends React.Component {
   constructor() {
@@ -56,6 +57,7 @@ class Login extends React.Component {
     const { isDisabled, name, email, redirect } = this.state;
     return (
       <section className="formLogin">
+        <img src={ logo } alt="imagem" />
         <form>
           <label htmlFor="name" id="labelName">
             Nome:

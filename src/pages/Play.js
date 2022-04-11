@@ -99,7 +99,7 @@ class Play extends Component {
     const four = 4;
 
     return (
-      <section>
+      <section className="play-container">
         <Header />
         <Timer
           seconds={ seconds }
@@ -122,7 +122,7 @@ class Play extends Component {
           onClick={ () => this.handleNextQuestion() }
           hidden={ isHiddenButton }
           data-testid="btn-next"
-          className="button button-next"
+          className="button-next"
         >
           Next
         </button>

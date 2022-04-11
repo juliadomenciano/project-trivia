@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './ranking.css';
 
 class Ranking extends Component {
   render() {
@@ -8,21 +9,26 @@ class Ranking extends Component {
     );
 
     return (
-      <section>
-        <div>
-          <h1 data-testid="ranking-title">ranking-title</h1>
+      <section className="ranking-container">
+        <div className="ranking">
+          <h1 data-testid="ranking-title">RANKING</h1>
           <Link to="/">
-            <button type="button" data-testid="btn-go-home">
+            <button className="button" type="button" data-testid="btn-go-home">
               Home
             </button>
           </Link>
         </div>
-        <section>
+        <section className="userInfo">
           {players.map((item, index) => (
-            <div key={ index }>
+            <div className="user" key={ index }>
               <img src={ item.picture } alt="Imagem não carregada" />
-              <h2 data-testid={ `player-name-${index}` }>{item.name}</h2>
-              <h2 data-testid={ `player-score-${index}` }>{item.score}</h2>
+              <h2 data-testid={ `player-name-${index}` }>{`Nome: ${item.name}`}</h2>
+              <h2
+                data-testid={ `player-score-${index}` }
+              >
+                {`Pontuação: ${item.score}`}
+
+              </h2>
             </div>
           ))}
         </section>

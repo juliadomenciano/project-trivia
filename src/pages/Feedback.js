@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { resetScoreAction } from '../redux/actions';
+import './feedback.css';
 
 class Feedback extends Component {
   componentDidMount() {
@@ -29,22 +30,31 @@ class Feedback extends Component {
     const { assertions, score } = this.props;
     const three = 3;
     return (
-      <section>
+      <section className="feedback-container">
         <Header />
-        <h1 data-testid="feedback-text">
+        <h1 className="feedback" data-testid="feedback-text">
           {assertions >= three ? 'Well Done!' : 'Could be better...'}
         </h1>
-        <h2 data-testid="feedback-total-score">{score}</h2>
-        <h3 data-testid="feedback-total-question">
-          {parseInt(assertions, 10)}
+        <h2
+          className="score"
+          data-testid="feedback-total-score"
+        >
+          {`Pontuação: ${score}`}
+
+        </h2>
+        <h3
+          className="score"
+          data-testid="feedback-total-question"
+        >
+          {`Acertos: ${parseInt(assertions, 10)}`}
         </h3>
         <Link to="/">
-          <button type="button" data-testid="btn-play-again">
+          <button className="button" type="button" data-testid="btn-play-again">
             Play Again
           </button>
         </Link>
         <Link to="/ranking">
-          <button type="button" data-testid="btn-ranking">
+          <button className="button" type="button" data-testid="btn-ranking">
             Ranking
           </button>
         </Link>
