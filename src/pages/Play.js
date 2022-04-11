@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import Question from '../components/Question';
 import { getToken, getAPIdata, addTotalScore } from '../redux/actions';
 import Timer from '../components/Timer';
+import './play.css';
 
 class Play extends Component {
   constructor() {
@@ -36,10 +37,11 @@ class Play extends Component {
       isButtonDisabled: false,
       seconds: 30,
     }));
-    document.querySelectorAll('.wrong').forEach((item) => {
-      item.style.border = '1px solid black';
+    document.querySelectorAll('.button').forEach((item) => {
+      item.className = 'button';
     });
-    document.querySelector('.correct').style.border = '1px solid black';
+    const btn = document.getElementById('correct');
+    btn.className = 'button';
     this.handleTimer();
   };
 
@@ -68,10 +70,11 @@ class Play extends Component {
   handleAnswers = () => {
     clearTimeout(this.intervalID);
     this.showNextButton();
-    document.querySelectorAll('.wrong').forEach((item) => {
-      item.style.border = '3px solid rgb(255, 0, 0)';
+    document.querySelectorAll('#wrong').forEach((item) => {
+      item.className = 'wrong button';
     });
-    document.querySelector('.correct').style.border = '3px solid rgb(6, 240, 15)';
+    const btn = document.getElementById('correct');
+    btn.className = 'correct button';
   }
 
   showNextButton = () => {
@@ -119,6 +122,7 @@ class Play extends Component {
           onClick={ () => this.handleNextQuestion() }
           hidden={ isHiddenButton }
           data-testid="btn-next"
+          className="button button-next"
         >
           Next
         </button>

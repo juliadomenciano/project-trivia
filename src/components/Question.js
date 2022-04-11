@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import './question.css';
+import he from 'he';
 
 class Question extends React.Component {
   render() {
@@ -18,7 +19,7 @@ class Question extends React.Component {
     return (
       <section className="questions-container">
         <h1 data-testid="question-category">{ askQuestion.category }</h1>
-        <h3 data-testid="question-text">{ askQuestion.question }</h3>
+        <h3 data-testid="question-text">{ he.decode(askQuestion.question) }</h3>
         <div className="answers-container" data-testid="answer-options">
           {
             respostas.map((item, index) => {
@@ -30,7 +31,8 @@ class Question extends React.Component {
                     key={ index }
                     onClick={ handleCorrectAnswers }
                     disabled={ isButtonDisabled }
-                    className="correct"
+                    className="button"
+                    id="correct"
                   >
 
                     { askQuestion.correct_answer }
@@ -44,7 +46,8 @@ class Question extends React.Component {
                   key={ index }
                   onClick={ handleAnswers }
                   disabled={ isButtonDisabled }
-                  className="wrong"
+                  className="button"
+                  id="wrong"
                 >
                   { item }
                 </button>
