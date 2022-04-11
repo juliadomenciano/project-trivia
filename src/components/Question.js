@@ -1,6 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
+import './question.css';
 
 class Question extends React.Component {
   render() {
@@ -15,10 +16,10 @@ class Question extends React.Component {
     const respostas = [...askQuestion.incorrect_answers, askQuestion.correct_answer]
       .sort(() => ((Math.random() > half) ? 1 : -one));
     return (
-      <section>
+      <section className="questions-container">
         <h1 data-testid="question-category">{ askQuestion.category }</h1>
         <h3 data-testid="question-text">{ askQuestion.question }</h3>
-        <div data-testid="answer-options">
+        <div className="answers-container" data-testid="answer-options">
           {
             respostas.map((item, index) => {
               if (item === askQuestion.correct_answer) {

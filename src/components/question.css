@@ -1,0 +1,10 @@
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.answers-container {
+
+}

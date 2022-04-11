@@ -1,0 +1,16 @@
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+
+.user-container {
+  display: flex;
+}
+
+.user-container p {
+  font-size: 30px;
+  margin: 20px
+}
