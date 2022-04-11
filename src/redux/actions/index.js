@@ -1,4 +1,5 @@
 import fetchAPI from '../../services/fetchAPI';
+
 export const RECEIVE_API_SUCCESS = 'RECEIVE_API_SUCCESS';
 export const RECEIVE_API_FAILURE = 'RECEIVE_API_FAILURE';
 export const RESPONSE_API = 'RESPONSE_API';
@@ -48,4 +49,3 @@ export const addTotalScore = (total) => ({
 export const resetScoreAction = () => ({
   type: RESET_SCORE,
 });
-
