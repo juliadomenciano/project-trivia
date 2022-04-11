@@ -28,7 +28,6 @@ class Feedback extends Component {
   render() {
     const { assertions, score } = this.props;
     const three = 3;
-
     return (
       <section>
         <Header />
