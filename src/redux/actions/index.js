@@ -7,6 +7,7 @@ export const REQUEST_API = 'REQUEST_API';
 export const USER_INFO = 'USER_INFO';
 export const SHOW_ANSWERS = 'SHOW_ANSWERS';
 export const TOTAL_SCORE = 'TOTAL_SCORE';
+export const RESET_SCORE = 'RESET_SCORE';
 
 export const receiveTokenSuccess = (token) => ({
   type: RECEIVE_API_SUCCESS,
@@ -43,4 +44,8 @@ export const showAnswers = (showResults) => ({
 export const addTotalScore = (total) => ({
   type: TOTAL_SCORE,
   score: total,
+});
+
+export const resetScoreAction = () => ({
+  type: RESET_SCORE,
 });

@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import { resetScoreAction } from '../redux/actions';
 
 class Feedback extends Component {
   componentDidMount() {
+    const { resetScore } = this.props;
+    resetScore();
     this.getUserData();
   }
 
@@ -20,7 +23,7 @@ class Feedback extends Component {
     } else {
       localStorage.setItem('ranking', JSON.stringify(userInfo));
     }
-  }
+  };
 
   render() {
     const { assertions, score } = this.props;
@@ -33,12 +36,18 @@ class Feedback extends Component {
           {assertions >= three ? 'Well Done!' : 'Could be better...'}
         </h1>
         <h2 data-testid="feedback-total-score">{score}</h2>
-        <h3 data-testid="feedback-total-question">{parseInt(assertions, 10)}</h3>
+        <h3 data-testid="feedback-total-question">
+          {parseInt(assertions, 10)}
+        </h3>
         <Link to="/">
-          <button type="button" data-testid="btn-play-again">Play Again</button>
+          <button type="button" data-testid="btn-play-again">
+            Play Again
+          </button>
         </Link>
         <Link to="/ranking">
-          <button type="button" data-testid="btn-ranking">Ranking</button>
+          <button type="button" data-testid="btn-ranking">
+            Ranking
+          </button>
         </Link>
       </section>
     );
@@ -49,6 +58,7 @@ Feedback.propTypes = {
   assertions: PropTypes.number,
   score: PropTypes.number,
   name: PropTypes.string,
+  resetScore: PropTypes.func,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
@@ -57,6 +67,8 @@ const mapStateToProps = (state) => ({
   name: state.player.name,
 });
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+  resetScore: () => dispatch(resetScoreAction()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Feedback);
