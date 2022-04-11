@@ -1,0 +1,23 @@
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+}
+
+.feedback {
+  font-size: 4rem;
+  color: white;
+}
+
+.score {
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+}
+
+.assertions {
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+}

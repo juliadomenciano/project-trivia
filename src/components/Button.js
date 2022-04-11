@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './button.css';
 
 class Button extends React.Component {
   constructor() {
@@ -15,6 +16,7 @@ class Button extends React.Component {
         <button
           type="button"
           data-testid="btn-settings"
+          className="config"
         >
           Configurações
         </button>

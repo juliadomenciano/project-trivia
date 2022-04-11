@@ -1,0 +1,19 @@
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  align-self: center;
+  padding: 20px 0px;
+  color: white;
+}
+
+.user-container {
+  display: flex;
+}
+
+.user-container p {
+  font-size: 30px;
+  margin: 20px
+}
