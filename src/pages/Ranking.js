@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { resetScoreAction } from '../redux/actions';
 
 class Ranking extends Component {
+  componentDidMount() {
+    const { resetScore } = this.props;
+    resetScore();
+  }
+
   render() {
     const players = JSON.parse(localStorage.getItem('ranking')).sort(
       (a, b) => b.score - a.score,
@@ -30,4 +38,13 @@ class Ranking extends Component {
     );
   }
 }
-export default Ranking;
+
+Ranking.propTypes = {
+  resetScore: PropTypes.func,
+}.isRequired;
+
+const mapDispatchToProps = (dispatch) => ({
+  resetScore: () => dispatch(resetScoreAction()),
+});
+
+export default connect(null, mapDispatchToProps)(Ranking);
