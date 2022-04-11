@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 
 class Ranking extends Component {
   render() {
-    console.log(JSON.parse(localStorage.getItem('ranking')));
     const players = JSON.parse(localStorage.getItem('ranking'))
       .sort((a, b) => b.score - a.score);
-    console.log(players);
-
     return (
       <section>
         <div>
