@@ -60,13 +60,13 @@ class Login extends React.Component {
         <img src={ logo } alt="imagem" />
         <form>
           <label htmlFor="name" id="labelName">
-            Nome:
+            Name:
             <br />
             <input
               className="name"
               type="text"
               name="name"
-              placeholder="Insira seu nome aqui."
+              placeholder="Write your name here."
               data-testid="input-player-name"
               value={ name }
               onChange={ this.handleChange }
@@ -81,7 +81,7 @@ class Login extends React.Component {
               type="email"
               name="email"
               data-testid="input-gravatar-email"
-              placeholder="Insira seu e-mail aqui."
+              placeholder="Write your e-mail here."
               value={ email }
               onChange={ this.handleChange }
             />

@@ -19,7 +19,7 @@ class Timer extends React.Component {
       <section className="timer">
         <div>
           <h2>
-            TEMPO:
+            TIME:
             {' '}
             {seconds}
           </h2>
